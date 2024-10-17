@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .dashboard-container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 0;
+        }
+
+        .sidebar ul {
+            list-style-type: none; /* Remove bullets */
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .sidebar li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar li:hover {
+            background-color: #e2e2e2;
+        }
+
+        .main-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content h3 {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .lecturers-list, .courses-list, .course-codes-list, .rooms-list {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f4f4f4; /* Optional background for the profile section */
+        }
+
+        .profile img {
+            max-width: 70px; /* Size of the profile picture */
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="profile">
+                <img src="https://static.vecteezy.com/system/resources/previews/021/548/095/original/default-profile-picture-avatar-user-avatar-icon-person-icon-head-icon-profile-picture-icons-default-anonymous-user-male-and-female-businessman-photo-placeholder-social-network-avatar-portrait-free-vector.jpg" alt="Student Profile Picture">
+                <span>Student Name</span> <!-- Add student name here -->
+            </div>
+            <ul>
+                <li onclick="showLecturers()">Lecturers</li>
+                <li onclick="showCourses()">Courses</li>
+                <li onclick="showCourseCodes()">Course Code</li>
+                <li onclick="showRooms()">Rooms</li>
+                <li>Settings</li>
+                <li>Timetable</li>
+            </ul>
+        </nav>
+        <div class="main-content">
+            <h3>Your timetable will be displayed here.</h3>
+            <div class="lecturers-list" id="lecturers-list">
+                <h4>List of Lecturers:</h4>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li>
+                        <input type="radio" name="lecturer" id="lecturer1" value="Dr. Alice Smith">
+                        <label for="lecturer1">Dr. Alice Smith</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="lecturer" id="lecturer2" value="Prof. John Doe">
+                        <label for="lecturer2">Prof. John Doe</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="lecturer" id="lecturer3" value="Dr. Jane Johnson">
+                        <label for="lecturer3">Dr. Jane Johnson</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="lecturer" id="lecturer4" value="Mr. Robert Brown">
+                        <label for="lecturer4">Mr. Robert Brown</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="courses-list" id="courses-list">
+                <h4>List of Courses:</h4>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li>
+                        <input type="radio" name="course" id="course1" value="Mathematics 101">
+                        <label for="course1">Mathematics 101</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="course" id="course2" value="Physics 201">
+                        <label for="course2">Physics 201</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="course" id="course3" value="Chemistry 301">
+                        <label for="course3">Chemistry 301</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="course" id="course4" value="Biology 401">
+                        <label for="course4">Biology 401</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="course-codes-list" id="course-codes-list">
+                <h4>List of Course Codes:</h4>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li>
+                        <input type="radio" name="courseCode" id="code1" value="MATH101">
+                        <label for="code1">MATH101</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="courseCode" id="code2" value="PHY201">
+                        <label for="code2">PHY201</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="courseCode" id="code3" value="CHEM301">
+                        <label for="code3">CHEM301</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="courseCode" id="code4" value="BIO401">
+                        <label for="code4">BIO401</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="rooms-list" id="rooms-list">
+                <h4>List of Rooms:</h4>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li>
+                        <input type="radio" name="room" id="room1" value="Room A101">
+                        <label for="room1">Room A101</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="room" id="room2" value="Room B202">
+                        <label for="room2">Room B202</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="room" id="room3" value="Room C303">
+                        <label for="room3">Room C303</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="room" id="room4" value="Room D404">
+                        <label for="room4">Room D404</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLecturers() {
+            const lecturersList = document.getElementById('lecturers-list');
+            const coursesList = document.getElementById('courses-list');
+            const courseCodesList = document.getElementById('course-codes-list');
+            const roomsList = document.getElementById('rooms-list');
+            lecturersList.style.display = 'block'; // Show lecturers
+            coursesList.style.display = 'none'; // Hide courses
+            courseCodesList.style.display = 'none'; // Hide course codes
+            roomsList.style.display = 'none'; // Hide rooms
+        }
+
+        function showCourses() {
+            const coursesList = document.getElementById('courses-list');
+            const lecturersList = document.getElementById('lecturers-list');
+            const courseCodesList = document.getElementById('course-codes-list');
+            const roomsList = document.getElementById('rooms-list');
+            coursesList.style.display = 'block'; // Show courses
+            lecturersList.style.display = 'none'; // Hide lecturers
+            courseCodesList.style.display = 'none'; // Hide course codes
+            roomsList.style.display = 'none'; // Hide rooms
+        }
+
+        function showCourseCodes() {
+            const courseCodesList = document.getElementById('course-codes-list');
+            const lecturersList = document.getElementById('lecturers-list');
+            const coursesList = document.getElementById('courses-list');
+            const roomsList = document.getElementById('rooms-list');
+            courseCodesList.style.display = 'block'; // Show course codes
+            lecturersList.style.display = 'none'; // Hide lecturers
+            coursesList.style.display = 'none'; // Hide courses
+            roomsList.style.display = 'none'; // Hide rooms
+        }
+
+        function showRooms() {
+            const roomsList = document.getElementById('rooms-list');
+            const lecturersList = document.getElementById('lecturers-list');
+            const coursesList = document.getElementById('courses-list');
+            const courseCodesList = document.getElementById('course-codes-list');
+            roomsList.style.display = 'block'; // Show rooms
+            lecturersList.style.display = 'none'; // Hide lecturers
+            coursesList.style.display = 'none'; // Hide courses
+            courseCodesList.style.display = 'none'; // Hide course codes
+        }
+    </script>
+</body>
+</html>
